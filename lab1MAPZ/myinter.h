@@ -5,30 +5,38 @@
 #include <QList>
 #include <QMap>
 
-enum tokenType{
-                CONST,
-                VARIABLE,
-                CONDITIONAL,
-                CYCLE,
-                FUNCTION,
-                OPERATOR,
-                BRAKETS,
-                SEPARATORS
+enum tokenType {
+    CONST,
+    VARIABLE,
+    CONDITIONAL,
+    CYCLE,
+    FUNCTION,
+    OPERATOR,
+    BRAKETS,
+    SEPARATORS
 };
 
 
-class Token{
+class Token {
 public:
-    Token(QString DATA,tokenType TYPE){data = DATA; type = TYPE;}
     QString data;
     tokenType type;
+    Token(QString DATA, tokenType TYPE) {
+        data = DATA;
+        type = TYPE;
+    }
 };
 
 
-QList<Token> lexicalAnalysis(QString code){
-    
-    
-}
+class LexAnalysis {
+public:
+    QList<Token> tokens;
+    LexAnalysis(QString code) {
+        tokens = lexicalAnalysis(code);
+    }
+private:
+    QList<Token> lexicalAnalysis(QString code);
+};
 
 
 #endif // MYINTER_H
