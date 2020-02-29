@@ -4,24 +4,28 @@
 #include <QVector>
 #include <QList>
 #include <QMap>
-
-enum tokenType {
+#include <iostream>
+using namespace std;
+enum TokenType {
+    KEYWORD,
     CONST,
     VARIABLE,
-    CONDITIONAL,
-    CYCLE,
-    FUNCTION,
+   //CONDITIONAL,
+   //CYCLE,
+   //FUNCTION,
     OPERATOR,
     BRAKETS,
-    SEPARATORS
+    SEPARATORS,
+    LITERALS
 };
+//var myVar = "hello people";
 
 
 class Token {
 public:
     QString data;
-    tokenType type;
-    Token(QString DATA, tokenType TYPE) {
+    TokenType type;
+    Token(QString DATA, TokenType TYPE) {
         data = DATA;
         type = TYPE;
     }
@@ -30,12 +34,19 @@ public:
 
 class LexAnalysis {
 public:
+    QString text;
     QList<Token> tokens;
+
     LexAnalysis(QString code) {
-        tokens = lexicalAnalysis(code);
+        text = code;
+       lexicalAnalysis();
     }
+
 private:
-    QList<Token> lexicalAnalysis(QString code);
+    void lexicalAnalysis();
+    QList<Token> splitByToken();
+
+
 };
 
 
