@@ -41,10 +41,11 @@ public:
         text = code;
        lexicalAnalysis();
     }
+    QList<Token> splitByToken();
 
 private:
+    QList<Token> getTokensByType(TokenType type);
     void lexicalAnalysis();
-    QList<Token> splitByToken();
 
 
 };

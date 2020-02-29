@@ -18,7 +18,7 @@ void LexAnalysis::lexicalAnalysis() {
 
 
 QList<Token> LexAnalysis::splitByToken(){
-   int position = 0;
+    int position = 0;
     QString word;
     QList<Token> tokens;
 
@@ -30,14 +30,51 @@ QList<Token> LexAnalysis::splitByToken(){
             position++;
         }
 
-        if(text[position] == )
+        if(text[position] ==";"){
+            word=text[position];
+            tokens.append(Token(word,TokenType::SEPARATORS ));
+            ++position;
+            continue;
+        }
+        if(text[position]=="\"" ){
+            word+=text[position];
+            ++position;
+            while(text[position]!="\""){
+                word+=text[position];
+                ++position;
+            }
+            word+=text[position];
+            tokens.append(Token(word, TokenType::LITERALS));
+            ++position;
+            continue;
+        }
+        QList<Token> operators = getTokensByType(TokenType::OPERATOR);
+        for(int i =0; i<operators.size();++i){
+            for(int j=0; j<operators[i].data.size();++j){
+                if(text[position] == operators[i].data[j]){
+                    word += text[position];
+                    ++position;
+                }
+            }
+        }
+        if(!word.isEmpty()){
+            tokens.append(Token(word, TokenType::OPERATOR));
+            continue;
+        }
 
-
-
-
-
-
-
+        QList<Token> keywords = getTokensByType(TokenType::KEYWORD);
+        for(int i =0; i<keywords.size();++i){
+            for(int j=0; j<keywords[i].data.size();++j){
+                if(text[position] == keywords[i].data[j]){
+                    word += text[position];
+                    ++position;
+                }
+            }
+        }
+        if(!word.isEmpty()){
+            tokens.append(Token(word, TokenType::KEYWORD));
+            continue;
+        }
 
         if(text[position].isLetter())
         {
@@ -49,66 +86,29 @@ QList<Token> LexAnalysis::splitByToken(){
             tokens.append(Token(word, TokenType::VARIABLE));
             continue;
         }
-        if(text[position].isDigit())
-        {
-            while(text[position].isDigit())
-            {
-                word.append(text[position]);
-                position++;
-            }
-            tokens.append(Token(word,Tag::LITERAL));
-            continue;
-        }
-        if(text[position] == "\"")
-        {
-            do
-            {
-                word.append(text[position]);
-                position++;
-            }while(text[position] != "\"" && position<text.length());
-            word.append("\"");
-            tokens.append(Token(word,Tag::LITERAL));
-            position++;
-            continue;
-        }
-        if(text[position] == ";" || text[position] == "{" || text[position] == "}" )
-        {
-            word.append(text[position]);
-            position++;
-            tokens.append(Token(word,Tag::SEPARATORS));
-            continue;
-        }
-        if(text[position] == "#")
-        {
-            while(text[position] != "\n" && position<text.length())
-            {
-                word.append(text[position]);
-                position++;
-            }
-            tokens.append(Token(word,Tag::COMMENTS));
-            continue;
-        }
-        if(text[position] == "=" || text[position] == ">" || text[position] == "<")
-        {
-            if(text[position] == "=" && text[position+1] == "=")
-            {
-                tokens.append(Token("==",Tag::OPERATOR));
-            }
-            else
-            {
-                word.append(text[position]);
-                tokens.append(Token(word,Tag::OPERATOR));
-            }
-            position++;
-            continue;
-        }
-        else
-        {
-            //add exeption
-            position++;
-        }
-    }
-*/
-    return tokens;
 
+    }
+    return tokens;
 }
+
+    QList<Token> LexAnalysis:: getTokensByType(TokenType type){
+        QList<Token> tokensByType;
+        for(int i = 0;i<this->tokens.size(); ++i){
+            if(this->tokens[i].type == type){
+                tokensByType.append(this->tokens[i]);
+            }
+        }
+        return tokensByType;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
