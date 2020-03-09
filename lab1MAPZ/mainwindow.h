@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "myinter.h"
+#include "parser.h"
 
 
 namespace Ui {

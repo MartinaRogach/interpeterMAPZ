@@ -27,11 +27,16 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    myinter.cpp
+    myinter.cpp \
+    statements.cpp \
+    parser.cpp
 
 HEADERS += \
         mainwindow.h \
-    myinter.h
+    myinter.h \
+    statements.h \
+    parser.h \
+    exception.h
 
 FORMS += \
         mainwindow.ui

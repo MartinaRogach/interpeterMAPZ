@@ -1,0 +1,148 @@
+#ifndef PARCER_H
+#define PARCER_H
+#include <QTreeWidget>
+
+class Node
+{
+public:
+    virtual QTreeWidgetItem* print() = 0;
+    virtual ~Node(){}
+};
+
+class Expr:public Node
+{
+public:
+    QTreeWidgetItem * print(){}
+    ~Expr(){}
+};
+
+class Stmt:public Node
+{
+public:
+    QTreeWidgetItem* print(){}
+    ~Stmt(){}
+};
+
+class Body:public Node
+{ 
+public:
+    QList<Node*> subtree;
+    QTreeWidgetItem* print();
+    ~Body(){}
+};
+
+class Variable:public Expr
+{
+public:
+    QString id;
+    QTreeWidgetItem* print();
+    Variable(QString ident):id{ident}{}
+    Variable(){}
+    ~Variable(){}
+};
+
+class VarDecl:public Node
+{
+public:
+    QTreeWidgetItem* print();
+    QString id;
+    VarDecl(QString ID):id{ID}{}
+    VarDecl(){}
+    ~VarDecl(){}
+};
+
+class VarAssign:public Stmt
+{
+public:
+    Variable* var;
+    Expr* rval;
+    QTreeWidgetItem *print();
+    VarAssign(Variable* Var, Expr* Rval):var{Var},rval{Rval}{}
+    VarAssign(){}
+    ~VarAssign(){}
+};
+
+class VarInit:public Node
+{
+public:
+    VarDecl* decl;
+    VarAssign* assign;
+    QTreeWidgetItem * print();
+    VarInit(VarDecl* Decl, VarAssign* Assign):decl{Decl},assign{Assign}{}
+    VarInit(){}
+    ~VarInit(){}
+};
+
+class BinOp:public Expr
+{
+public:
+    Expr* left;
+    QString op;
+    Expr* right;
+    QTreeWidgetItem * print();
+    BinOp(Expr* Left, QString Op, Expr* Right):left{Left},op{Op},right{Right}{}
+    BinOp(){}
+    ~BinOp(){}
+};
+
+class Constant:public Expr
+{
+public:
+    QTreeWidgetItem* print(){}
+    ~Constant(){}
+};
+
+class IfStmt:public Stmt
+{
+public:
+    Expr* expr;
+    Body* body;
+    QTreeWidgetItem * print();
+    IfStmt(Expr* expression,Body* Body):expr{expression},body{Body}{}
+    IfStmt(){}
+    ~IfStmt(){}
+};
+
+class ForStmt:public Stmt
+{
+public:
+    Node* init;
+    Expr* test;
+    Expr* update;
+    Body* stmts;
+    QTreeWidgetItem * print();
+    ForStmt(){}
+    ~ForStmt(){}
+};
+
+class Url:public Type
+{
+public:
+    TYPE type = TYPE::URL;
+    QTreeWidgetItem* print();
+    ~Url(){}
+};
+
+class NaturalConst:public Constant
+{
+public:
+    int Value;
+    TYPE type = TYPE::NATURAL;
+    QTreeWidgetItem* print();
+    NaturalConst(int val):Value{val}{}
+    NaturalConst(){}
+    ~NaturalConst(){}
+};
+
+class UrlConst:public Constant
+{
+public:
+    QString value;
+    TYPE type = TYPE::URL;
+    QTreeWidgetItem* print();
+    UrlConst(QString val):value{val}{}
+    UrlConst(){}
+    ~UrlConst(){}
+};
+
+#endif // PARCER_H

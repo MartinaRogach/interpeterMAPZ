@@ -1,25 +1,20 @@
 #ifndef MYINTER_H
 #define MYINTER_H
 #include <QString>
-#include <QVector>
 #include <QList>
-#include <QMap>
-#include <iostream>
+
 using namespace std;
 enum TokenType {
     KEYWORD,
     CONST,
     VARIABLE,
-   //CONDITIONAL,
-   //CYCLE,
-   //FUNCTION,
     OPERATOR,
+    UNAROPERATOR,
     BRAKETS,
-    SEPARATORS,
-    LITERALS
+    SEPARATOR,
+    LITERAL
 };
 //var myVar = "hello people";
-
 
 class Token {
 public:
@@ -36,7 +31,7 @@ class LexAnalysis {
 public:
     QString text;
     QList<Token> tokens;
-
+    QList<Token> variableList;
     LexAnalysis(QString code) {
         text = code;
        lexicalAnalysis();
