@@ -25,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
+    interpreter.cpp \
         main.cpp \
         mainwindow.cpp \
     myinter.cpp \
@@ -32,6 +33,7 @@ SOURCES += \
     parser.cpp
 
 HEADERS += \
+    interpreter.h \
         mainwindow.h \
     myinter.h \
     statements.h \

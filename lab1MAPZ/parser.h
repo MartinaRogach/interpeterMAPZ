@@ -1,8 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
-#include "statements.h"
+#include "interpreter.h"
 #include "myinter.h"
-#include "exception.h"
 
 class Parser {
 public:
@@ -11,16 +10,15 @@ public:
     QList<Token> variableList;
     void addVariableToList();
     QList<Node*> createTree(bool isBody);
+    VarAssign* parseVariable();
     VarDecl* parseVarDecl();
-    VarAssign* parseVarAssign();
-    QString parseId();
     VarInit* parseInit();
-    Expression* parseExpr();
-    Constant *parseConst();
-    BinOp* parseBinOp();
+    Expression* parseExpression();
+    BinaryOperation* parseBinaryOperation();
     Body* parseBody();
-    IfStmt* parseIf();
-//    ForStmt* parseFor();
+    If* parseIf();
+    Cycle* parseCycle();
+    Print* parsePrint();
     void printTree(QList<Node*> tree,QTreeWidget *trwdg);
     Parser(QList<Token> tokens) {
         tokenstream = tokens;

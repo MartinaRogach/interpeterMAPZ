@@ -1,45 +1,54 @@
 #ifndef STATEMENTS_H
 #define STATEMENTS_H_H
 #include <QTreeWidget>
+#include "exception.h"
 
 class Node {
 public:
     virtual QTreeWidgetItem* print() = 0;
+    virtual QString evaluate(QMap<QString, QString>& table) = 0;
     virtual ~Node(){}
 };
 
 class Expression: public Node {
 public:
     QTreeWidgetItem * print(){}
+    QString evaluate(QMap<QString, QString>& table){}
     ~Expression(){}
 };
 
 class Statement: public Node {
 public:
     QTreeWidgetItem* print(){}
+    QString evaluate(QMap<QString, QString>& table){}
     ~Statement(){}
-};
-
-class Body: public Node {
-public:
-    QList<Node*> subtree;
-    QTreeWidgetItem* print();
-    ~Body(){}
 };
 
 class Variable: public Expression {
 public:
     QString id;
     QTreeWidgetItem* print();
+    QString evaluate(QMap<QString, QString>& table);
     Variable(QString ident):id{ident}{}
     Variable(){}
     ~Variable(){}
 };
 
-class VarDecl: public Node {
+class Literal: public Expression {
+public:
+    QString value;
+    QTreeWidgetItem* print();
+    QString evaluate(QMap<QString, QString>& table);
+    Literal(QString ident):value{ident}{}
+    Literal(){}
+    ~Literal(){}
+};
+
+class VarDecl:public Node {
 public:
     QTreeWidgetItem* print();
     QString id;
+    QString evaluate(QMap<QString, QString>& table);
     VarDecl(QString ID):id{ID}{}
     VarDecl(){}
     ~VarDecl(){}
@@ -50,59 +59,99 @@ public:
     Variable* var;
     Expression* rval;
     QTreeWidgetItem *print();
+    QString evaluate(QMap<QString, QString>& table);
     VarAssign(Variable* Var, Expression* Rval):var{Var},rval{Rval}{}
     VarAssign(){}
     ~VarAssign(){}
 };
 
-class VarInit: public Node {
+class VarInit:public Node {
 public:
     VarDecl* decl;
     VarAssign* assign;
     QTreeWidgetItem * print();
+    QString evaluate(QMap<QString, QString>& table);
     VarInit(VarDecl* Decl, VarAssign* Assign):decl{Decl},assign{Assign}{}
     VarInit(){}
     ~VarInit(){}
 };
 
-class BinOp: public Expression {
+class Body: public Node {
+public:
+    QList<Node*> subtree;
+    QTreeWidgetItem* print();
+    QString evaluate(QMap<QString, QString>& table);
+    ~Body(){}
+};
+
+class BinaryOperation: public Expression {
 public:
     Expression* left;
     QString op;
     Expression* right;
     QTreeWidgetItem * print();
-    BinOp(Expression* Left, QString Op, Expression* Right):left{Left},op{Op},right{Right}{}
-    BinOp(){}
-    ~BinOp(){}
+    QString evaluate(QMap<QString, QString>& table);
+    BinaryOperation(Expression* Left, QString Op, Expression* Right):left{Left},op{Op},right{Right}{}
+    BinaryOperation(){}
+    ~BinaryOperation(){}
 };
 
-class Constant: public Expression {
+class If: public Statement {
 public:
-    QString value;
-    QTreeWidgetItem* print(){}
-    Constant(QString val): value{val}{}
-    ~Constant(){}
-};
-
-class IfStmt: public Statement {
-public:
-    Expression* expr;
+    Expression* check;
     Body* body;
     QTreeWidgetItem * print();
-    IfStmt(Expression* expression,Body* Body):expr{expression},body{Body}{}
-    IfStmt(){}
-    ~IfStmt(){}
+    QString evaluate(QMap<QString, QString>& table);
+    If(Expression* expression,Body* Body):check{expression},body{Body}{}
+    If(){}
+    ~If(){}
 };
 
-class ForStmt: public Statement {
+class Cycle: public Statement {
 public:
-    Node* init;
-    Expression* test;
-    Expression* update;
-    Body* stmts;
+    Expression* check;
+    Body* body;
     QTreeWidgetItem * print();
-    ForStmt(){}
-    ~ForStmt(){}
+    QString evaluate(QMap<QString, QString>& table);
+    Cycle(){}
+    ~Cycle(){}
 };
+
+class Print: public Statement {
+public:
+    Expression* value;
+    QTreeWidgetItem * print();
+    QString evaluate(QMap<QString, QString>& table);
+    Print(){}
+    ~Print(){}
+};
+
+class Regex: public Expression {
+public:
+    QString value;
+    Regex(QString value) {
+        this->value = value;
+    }
+    QTreeWidgetItem* print();
+    QString evaluate(QMap<QString, QString>& table);
+
+    void replace() {
+        if (value.contains("-")) {
+            value.insert(0,"[");
+            value.append("]");
+        } else if (value.contains("(")) {
+            int index1 = value.indexOf("(");
+            int index2 = value.indexOf(")");
+            value.replace(index1, 1, "{");
+            value.replace(index2, 1, "}");
+        } else if (value.contains(" ")) {
+            int index1 = value.indexOf(" ");
+            value.replace(index1, 2, "\\s");
+        } else if (value.contains("*")) {
+            value.replace(0, 1, ".");
+        }
+    }
+};
+
 
 #endif // STATEMENTS_H

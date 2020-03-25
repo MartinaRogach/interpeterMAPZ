@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1006</width>
-    <height>607</height>
+    <width>1143</width>
+    <height>687</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,41 +19,57 @@
      <rect>
       <x>20</x>
       <y>30</y>
-      <width>361</width>
-      <height>271</height>
+      <width>301</width>
+      <height>431</height>
      </rect>
+    </property>
+    <property name="html">
+     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'.AppleSystemUIFont'; font-size:13pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; color:#008000;&quot;&gt;var&lt;/span&gt;&lt;span style=&quot; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#008000;&quot;&gt;myVar&lt;/span&gt;&lt;span style=&quot; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#008000;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#008000;&quot;&gt;&amp;quot;hell2o&lt;/span&gt;&lt;span style=&quot; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; color:#008000;&quot;&gt;pe2ople&amp;quot;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;var&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;regex&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;=&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;[1-3];&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;if&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;myVar&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;has&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;regex&lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#c0c0c0;&quot;&gt; &lt;/span&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;{&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;  print &amp;quot;Success&amp;quot;;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;}&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;var string;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;cycle myVar has regex {&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;  string = myVar capture regex;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;  myVar = myVar remove string;&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'.SF NS Mono'; color:#008000;&quot;&gt;}&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="pushButton">
     <property name="geometry">
      <rect>
-      <x>200</x>
-      <y>340</y>
+      <x>20</x>
+      <y>470</y>
       <width>93</width>
       <height>28</height>
      </rect>
     </property>
     <property name="text">
-     <string>PushButton</string>
+     <string>Run</string>
     </property>
    </widget>
    <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>330</x>
       <y>30</y>
       <width>231</width>
-      <height>271</height>
+      <height>431</height>
      </rect>
     </property>
    </widget>
    <widget class="QTreeWidget" name="treeWidget">
     <property name="geometry">
      <rect>
-      <x>640</x>
+      <x>570</x>
       <y>30</y>
-      <width>256</width>
-      <height>271</height>
+      <width>291</width>
+      <height>431</height>
      </rect>
     </property>
     <column>
@@ -62,13 +78,28 @@
      </property>
     </column>
    </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>870</x>
+      <y>30</y>
+      <width>261</width>
+      <height>261</height>
+     </rect>
+    </property>
+    <property name="columnCount">
+     <number>2</number>
+    </property>
+    <column/>
+    <column/>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1006</width>
+     <width>1143</width>
      <height>22</height>
     </rect>
    </property>

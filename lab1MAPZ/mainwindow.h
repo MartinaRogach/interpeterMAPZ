@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include "myinter.h"
 #include "parser.h"
-
+#include "interpreter.h"
 
 namespace Ui {
 class MainWindow;

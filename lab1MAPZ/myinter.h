@@ -6,15 +6,13 @@
 using namespace std;
 enum TokenType {
     KEYWORD,
-    CONST,
     VARIABLE,
     OPERATOR,
-    UNAROPERATOR,
-    BRAKETS,
+    BRACKETS,
     SEPARATOR,
-    LITERAL
+    LITERAL,
+    REGEX
 };
-//var myVar = "hello people";
 
 class Token {
 public:
